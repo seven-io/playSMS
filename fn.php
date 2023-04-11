@@ -27,14 +27,14 @@ defined('_SECURE_') || die('Forbidden');
 // $smslog_id : sms ID
 // $sms_type : sms type
 // $unicode : unicode
-function sms77_hook_sendsms($smsc, $sms_sender, $sms_footer, $sms_to, $sms_msg, $uid = '',
+function seven_hook_sendsms($smsc, $sms_sender, $sms_footer, $sms_to, $sms_msg, $uid = '',
                             $gpid = 0, $smslog_id = 0, $sms_type = 'text', $unicode = 0) {
     global $plugin_config;
 
     _log('enter smsc:' . $smsc . ' smslog_id:' . $smslog_id . ' uid:' . $uid . ' to:'
-        . $sms_to, 3, 'sms77_hook_sendsms');
+        . $sms_to, 3, 'seven_hook_sendsms');
 
-    $pluginConfig = gateway_apply_smsc_config($smsc, $plugin_config)['sms77'];
+    $pluginConfig = gateway_apply_smsc_config($smsc, $plugin_config)['seven'];
     $from = stripslashes($sms_sender);
     $moduleSender = $pluginConfig['module_sender'];
     if ($moduleSender) $from = $moduleSender;
@@ -71,7 +71,7 @@ function sms77_hook_sendsms($smsc, $sms_sender, $sms_footer, $sms_to, $sms_msg, 
         $response = curl_exec($ch);
         curl_close($ch);
 
-        _log('send url:[' . $url . ']', 3, 'sms77_hook_sendsms');
+        _log('send url:[' . $url . ']', 3, 'seven_hook_sendsms');
 
         $msgId = 0;
 
@@ -90,7 +90,7 @@ function sms77_hook_sendsms($smsc, $sms_sender, $sms_footer, $sms_to, $sms_msg, 
             . ' message_id:' . $msgId . ' error_code:' . $c_error_code;
         else $log = 'invalid smslog_id:' . $smslog_id . ' resp:[' . $response . ']';
 
-        _log($log . ' smsc:' . $smsc, 2, 'sms77_hook_sendsms');
+        _log($log . ' smsc:' . $smsc, 2, 'seven_hook_sendsms');
     }
 
     if (!$ok) dlr($smslog_id, $uid, 2);
@@ -98,15 +98,15 @@ function sms77_hook_sendsms($smsc, $sms_sender, $sms_footer, $sms_to, $sms_msg, 
     return $ok;
 }
 
-function sms77_hook_call($requests) {
+function seven_hook_call($requests) {
     global $core_config, $plugin_config; // please note that we must globalize these 2 variables
     $called_from_hook_call = true;
     $access = $requests['access'];
 
     if ($requests['access'] !== 'callback') return;
 
-    $fn = $core_config['apps_path']['plug'] . '/gateway/sms77/callback.php';
-    _log('start load:' . $fn, 2, 'sms77 call');
+    $fn = $core_config['apps_path']['plug'] . '/gateway/seven/callback.php';
+    _log('start load:' . $fn, 2, 'seven call');
     include $fn;
-    _log('end load callback', 2, 'sms77 call');
+    _log('end load callback', 2, 'seven call');
 }

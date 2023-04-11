@@ -21,7 +21,7 @@ if (!$called_from_hook_call) {
 
     include 'init.php';
     include $core_config['apps_path']['libs'] . '/function.php';
-    chdir('plugin/gateway/sms77/');
+    chdir('plugin/gateway/seven/');
     $requests = $_REQUEST;
 }
 
@@ -30,15 +30,15 @@ if (!$called_from_hook_call) {
 $log = '';
 if (is_array($requests)) {
     foreach ($requests as $k => $v) $log .= $k . ':' . $v . ' ';
-    _log('pushed ' . $log, 2, 'sms77 callback');
+    _log('pushed ' . $log, 2, 'seven callback');
 }
 
-$idSms77 = $requests['msg_id'];
+$idSeven = $requests['msg_id'];
 $idLocal = $requests['foreign_id'];
 $messageStatus = $requests['status'];
 $isDLR = 'dlr' === $requests['webhook_event'];
 
-if ($isDLR && $idSms77 && $messageStatus && $idLocal) {
+if ($isDLR && $idSeven && $messageStatus && $idLocal) {
     $data = sendsms_get_sms($idLocal);
     $uid = $data['uid'];
     $p_status = $data['p_status'];
@@ -58,11 +58,11 @@ if ($isDLR && $idSms77 && $messageStatus && $idLocal) {
     }
 
     _log('dlr uid:' . $uid . ' smslog_id:' . $idLocal . ' messageid:'
-        . $idSms77 . ' status:' . $messageStatus, 2, 'sms77 callback');
+        . $idSeven . ' status:' . $messageStatus, 2, 'seven callback');
 
     dlr($idLocal, $uid, $p_status);
 
     ob_end_clean();
 
-    exit('ACK/sms77');
+    exit('ACK/seven');
 }

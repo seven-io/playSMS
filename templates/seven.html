@@ -1,8 +1,8 @@
 {{ DIALOG_DISPLAY }}
 
-<h2>{{ Manage sms77 }}</h2>
+<h2>{{ Manage seven }}</h2>
 
-<form action='index.php?app=main&inc=gateway_sms77&op=manage_save' method='post'>
+<form action='index.php?app=main&inc=gateway_seven&op=manage_save' method='post'>
     {{ CSRF_FORM }}
 
     <table class='playsms-table'>
@@ -13,7 +13,7 @@
             </td>
 
             <td>
-                sms77
+                seven
             </td>
         </tr>
 
@@ -26,7 +26,7 @@
 
             <td>
                 <input maxlength='96' name='up_apikey' id='up_apikey'
-                       value='{{ sms77_param_apikey }}' required/>
+                       value='{{ seven_param_apikey }}' required/>
                 {{ HINT_API_KEY }}
             </td>
         </tr>
@@ -40,7 +40,7 @@
 
             <td>
                 <input maxlength='16' name='up_module_sender'
-                       id='up_module_sender' value='{{ sms77_param_module_sender }}'/>
+                       id='up_module_sender' value='{{ seven_param_module_sender }}'/>
                 {{ HINT_MODULE_SENDER }}
             </td>
         </tr>
@@ -55,7 +55,7 @@
             <td>
                 <input size='5' maxlength='5' name='up_datetime_timezone'
                        id='up_datetime_timezone'
-                       value='{{ sms77_param_datetime_timezone }}'/>
+                       value='{{ seven_param_datetime_timezone }}'/>
                 {{ HINT_TIMEZONE }}
             </td>
         </tr>
@@ -68,13 +68,13 @@
 <h3>{{ Notes }}:</h3>
 
 <ul>
-    <li>{{ SMS77_SIGN_UP }} <a href='https://www.sms77.io' target='_blank'>sms77.io</a>
+    <li>{{ SEVEN_SIGN_UP }} <a href='https://www.seven.io' target='_blank'>seven.io</a>
     </li>
-    <li>{{ SMS77_FREE_CREDITS }}</li>
+    <li>{{ SEVEN_FREE_CREDITS }}</li>
     <li>{{ CALLBACK_URL_IS }} <u><em>{{ callback_url }}</em></u></li>
     <li>{{ CALLBACK_URL_ACCESSIBLE }}</li>
     <li>{{ CALLBACK_URL_CREATE }}</li>
-    <li>{{ SMS77_PUSH_DLR }}</li>
+    <li>{{ SEVEN_PUSH_DLR }}</li>
 </ul>
 
 {{ BUTTON_BACK }}
